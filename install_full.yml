@@ -1,0 +1,13 @@
+---
+- name: "Install Full"
+  hosts: http1
+  vars:
+    https: "{{ lookup('env', 'HTTPS') }}"
+    staging: "{{ lookup('env', 'STAGING') }}"
+    mysql_initial: "{{ lookup('env', 'MYSQL_INITIAL') }}"
+  roles:
+    - role: "create_user"
+    - role: "httpd_initial"
+    - role: "mysql_initial"
+    - role: "mysql_add_user"
+    - role: "php_initial"
